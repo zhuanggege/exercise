@@ -13,6 +13,7 @@ public class PersonController {
     @ResponseBody
     public String index () {
         log.info("主页");
+
         return "hello world !! wellcome to springboot! ";
     }
 
