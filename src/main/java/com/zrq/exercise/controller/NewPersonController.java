@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
+@RequestMapping("/new")
 public class NewPersonController {
 
-    @RequestMapping("index")
+    @RequestMapping("/index")
     @ResponseBody
     public String index() {
 
