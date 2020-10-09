@@ -9,5 +9,8 @@
     <insert id="insPerson" parameterType="Person">
         insert into person values (#{id},#{name},#{age},#{address})
     </insert>
+    <select id="findByName" parameterType="String" resultType="Person">
+        select * from person where name=#{name}
+    </select>
 
 </mapper>

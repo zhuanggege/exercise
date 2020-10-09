@@ -2,6 +2,7 @@ package com.zrq.exercise.dao;
 
 import com.zrq.exercise.entity.Person;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ import java.util.List;
 public interface PersonDao {
     public List<Person> findall();
     public int insPerson(Person person);
+    public Person findByName(@Param("name") String name);
 }

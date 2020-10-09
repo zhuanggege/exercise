@@ -18,5 +18,15 @@ public interface PersonServer {
      * 新增一条数据
      */
     public int insPerson(Person person);
+    /**
+     * 查询一条数据，通过名称查询
+     */
+    public Person findByName(String name);
+
+
+
+
+
+
 
 }

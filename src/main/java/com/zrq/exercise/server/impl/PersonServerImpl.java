@@ -4,7 +4,6 @@ import com.zrq.exercise.dao.PersonDao;
 import com.zrq.exercise.entity.Person;
 import com.zrq.exercise.server.PersonServer;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,6 +29,16 @@ public class PersonServerImpl implements PersonServer {
 
     @Override
     public int insPerson(Person person) {
+
+        Person byName = findByName(person.getName());
+        if(byName != null) {
+            return 0;
+        }
         return personDao.insPerson(person);
+    }
+
+    @Override
+    public Person findByName(String name) {
+        return personDao.findByName(name);
     }
 }

@@ -39,7 +39,7 @@ public class PersonController {
     public String insPerson(Person person) {
         int i = personServerImpl.insPerson(person);
         log.info(""+i);
-        return i>0?"添加成功！":"添加失败！";
+        return i>0?"添加成功！":"添加失败或者名称存在！";
     }
 
 
