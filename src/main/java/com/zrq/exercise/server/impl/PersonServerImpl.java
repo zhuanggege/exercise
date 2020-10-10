@@ -30,10 +30,10 @@ public class PersonServerImpl implements PersonServer {
     @Override
     public int insPerson(Person person) {
 
-        Person byName = findByName(person.getName());
-        if(byName != null) {
-            return 0;
-        }
+//        Person byName = findByName(person.getName());
+//        if(byName != null) {
+//            return 0;
+//        }
         return personDao.insPerson(person);
     }
 
