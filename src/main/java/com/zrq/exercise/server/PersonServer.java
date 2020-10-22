@@ -23,6 +23,9 @@ public interface PersonServer {
      */
     public Person findByName(String name);
 
+    //登录业务
+    public String login(Person person);
+
 
 
 

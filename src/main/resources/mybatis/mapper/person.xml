@@ -7,7 +7,7 @@
         select  * from person
     </select>
     <insert id="insPerson" parameterType="Person">
-        insert into person values (#{id},#{name},#{age},#{address})
+        insert into person values (#{id},#{name},#{age},#{address},#{create_time})
     </insert>
     <select id="findByName" parameterType="String" resultType="Person">
         select * from person where name=#{name}

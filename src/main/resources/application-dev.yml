@@ -19,12 +19,18 @@ spring:
       max-wait-millis: 200                          # 等待连接获取的最大超时时间
 
 ##配置mybatis
-mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml    # mybatis配置文件所在路径
-  type-aliases-package: com.zrq.exercise.entity            # 定义所有操作类的别名所在包,实体映射类所在的包
-  mapper-locations:                                     # 所有的mapper映射文件
-    - classpath:mybatis/mapper/**/*.xml
+#mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml    # mybatis配置文件所在路径
+#  type-aliases-package: com.zrq.exercise.entity            # 定义所有操作类的别名所在包,实体映射类所在的包
+#  mapper-locations:                                        # 所有的mapper映射文件
+#    - classpath:mybatis/mapper/**/*.xml
 
 logging:
   file:
     path: e:/logs/springBoot
+#配置mybatis-plus
+mybatis-plus:
+  config-location: classpath:mybatis/mybatis-config.xml    # mybatis配置文件所在路径
+  type-aliases-package: com.zrq.exercise.entity            # 定义所有操作类的别名所在包,实体映射类所在的包
+  mapper-locations:                                        # 所有的mapper映射文件
+    - classpath:mybatis/mapper/**/*.xml

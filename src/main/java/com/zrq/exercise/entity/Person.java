@@ -14,6 +14,22 @@ public class Person implements Serializable {
     private String name;
     private int age;
     private String address;
+    private long create_time;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", create_time=" + create_time +
+                '}';
+    }
+
+    public void setCreate_time(long create_time) {
+        this.create_time = create_time;
+    }
 
     public int getId() {
         return id;
@@ -47,13 +63,4 @@ public class Person implements Serializable {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", address='" + address + '\'' +
-                '}';
-    }
 }

@@ -25,7 +25,7 @@ public class LogAspect {
     @Resource
     private PersonServer personServerImpl;
 
-    @Pointcut("execution(public * com.zrq.exercise.controller.PersonController.*(..))")
+    @Pointcut("execution(public * com.zrq.exercise.controller.PersonController.news*(..))")
     public void webLog(){}
 
     /**
