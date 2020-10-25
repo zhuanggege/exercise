@@ -1,6 +1,7 @@
 package com.zrq.exercise.core;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
@@ -26,14 +27,17 @@ public class MybatisPlusGenerator {
             //全局配置
             GlobalConfig gc = new GlobalConfig();
             gc.setOutputDir(rb.getString("OutputDir"));
-            gc.setOpen(false); gc.setBaseResultMap(true);
+            gc.setOpen(false);
+            gc.setBaseResultMap(true);
             gc.setBaseColumnList(true);
             gc.setAuthor(rb.getString("author"));
             gc.setMapperName("%sMapper");
             gc.setXmlName("%sMapper");
             gc.setServiceName("%sService");
-//            gc.setServiceImplName("%sServiceImpl");
+            gc.setServiceImplName("%sServiceImpl");
             gc.setControllerName("%sController");
+            gc.setIdType(IdType.AUTO);
+            gc.setEntityName("%sModel");
             mpg.setGlobalConfig(gc);
             //dataSource配置
             DataSourceConfig dsc = new DataSourceConfig();
@@ -79,11 +83,12 @@ public class MybatisPlusGenerator {
             strategy.setEntityLombokModel(true);
             //设置需要创建的表
             strategy.setInclude(new String[]{rb.getString("tableName")});
+            strategy.setEntityTableFieldAnnotationEnable(true);
             mpg.setStrategy(strategy);
             //设置模板引擎
             TemplateConfig tc = new TemplateConfig();
             tc.setController(null);       //设置不需要创建controller
-//            tc.setServiceImpl(null);      //设置不需要创建serviceImpl
+            tc.setServiceImpl(null);      //设置不需要创建serviceImpl
             tc.setService(null);          //设置不需要创建service
             tc.setXml(null);
             mpg.setTemplate(tc);
