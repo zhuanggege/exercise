@@ -30,7 +30,6 @@ public class MybatisPlusGenerator {
             gc.setOpen(false);
             gc.setBaseResultMap(true);
             gc.setBaseColumnList(true);
-            gc.setAuthor(rb.getString("author"));
             gc.setMapperName("%sMapper");
             gc.setXmlName("%sMapper");
             gc.setServiceName("%sService");
@@ -38,17 +37,19 @@ public class MybatisPlusGenerator {
             gc.setControllerName("%sController");
             gc.setIdType(IdType.AUTO);
             gc.setEntityName("%sModel");
+//            gc.setSwagger2(true);
             mpg.setGlobalConfig(gc);
             //dataSource配置
             DataSourceConfig dsc = new DataSourceConfig();
             dsc.setDbType(DbType.MYSQL);
             dsc.setUrl(rb.getString("url"));
-            dsc.setDriverName("com.mysql.jdbc.Driver");
+            dsc.setDriverName(rb.getString("driver"));
             dsc.setUsername(rb.getString("userName"));
             dsc.setPassword(rb.getString("password"));
             mpg.setDataSource(dsc);
             //package配置
             PackageConfig pc = new PackageConfig();
+            pc.setModuleName(rb.getString("moduleName"));
             pc.setParent(rb.getString("parent"));
             pc.setController("controller");
 //            pc.setService("service");
@@ -71,7 +72,7 @@ public class MybatisPlusGenerator {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
                 //自定义输入文件名称
-                return rb.getString("OutputDirXml") + "/mapper/" + tableInfo.getEntityName() + StringPool.DOT_XML;
+                return rb.getString("OutputDirXml") +"/mapper/"+ tableInfo.getEntityName() + StringPool.DOT_XML;
             }
             });
             cfg.setFileOutConfigList(focList);
