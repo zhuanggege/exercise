@@ -1,11 +1,14 @@
 package com.zrq.exercise.core;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
@@ -14,9 +17,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * @Author:
+ * @Author: zrq
  * @CreateDate: 2020/10/18
- * @Version: 类说明：
+ * @Version: 类说明： 代码生成器
  */
 public class MybatisPlusGenerator {
     public static void main(String[] args) throws InterruptedException {
@@ -27,6 +30,7 @@ public class MybatisPlusGenerator {
             //全局配置
             GlobalConfig gc = new GlobalConfig();
             gc.setOutputDir(rb.getString("OutputDir"));
+            gc.setAuthor(rb.getString("author"));
             gc.setOpen(false);
             gc.setBaseResultMap(true);
             gc.setBaseColumnList(true);
@@ -37,6 +41,7 @@ public class MybatisPlusGenerator {
             gc.setControllerName("%sController");
             gc.setIdType(IdType.AUTO);
             gc.setEntityName("%sModel");
+            gc.setDateType(DateType.TIME_PACK);
 //            gc.setSwagger2(true);
             mpg.setGlobalConfig(gc);
             //dataSource配置
@@ -72,7 +77,7 @@ public class MybatisPlusGenerator {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
                 //自定义输入文件名称
-                return rb.getString("OutputDirXml") +"/mapper/"+ tableInfo.getEntityName() + StringPool.DOT_XML;
+                return rb.getString("OutputDirXml") + tableInfo.getEntityName() + StringPool.DOT_XML;
             }
             });
             cfg.setFileOutConfigList(focList);
@@ -84,12 +89,20 @@ public class MybatisPlusGenerator {
             strategy.setEntityLombokModel(true);
             //设置需要创建的表
             strategy.setInclude(new String[]{rb.getString("tableName")});
+            // 自动填充配置
+            TableFill gmtCreate = new TableFill("$gmt_created_at$", FieldFill.INSERT); //gmt_create
+            TableFill gmtModified = new TableFill("$updated_at$", FieldFill.INSERT_UPDATE);//gmt_modified
+            ArrayList<TableFill> tableFills = new ArrayList<>();
+            tableFills.add(gmtCreate);
+            tableFills.add(gmtModified);
+            strategy.setTableFillList(tableFills);
             strategy.setEntityTableFieldAnnotationEnable(true);
+            strategy.setSuperServiceClass("null");
             mpg.setStrategy(strategy);
             //设置模板引擎
             TemplateConfig tc = new TemplateConfig();
             tc.setController(null);       //设置不需要创建controller
-            tc.setServiceImpl(null);      //设置不需要创建serviceImpl
+//            tc.setServiceImpl(null);      //设置不需要创建serviceImpl
             tc.setService(null);          //设置不需要创建service
             tc.setXml(null);
             mpg.setTemplate(tc);
