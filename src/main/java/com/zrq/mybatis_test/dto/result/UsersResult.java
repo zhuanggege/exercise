@@ -1,6 +1,6 @@
 package com.zrq.mybatis_test.dto.result;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
@@ -16,9 +16,9 @@ public class UsersResult {
 
     private Integer id;
 
+    @JsonIgnore
     private String name;
 
-    @JSONField(serialize = false)
     private String password;
 
     @Tolerate
