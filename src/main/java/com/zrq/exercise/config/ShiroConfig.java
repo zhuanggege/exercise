@@ -24,7 +24,7 @@ public class ShiroConfig {
         //设置安全管理器
         bean.setSecurityManager(securityManager);
         bean.setLoginUrl("/person/login");
-        bean.setSuccessUrl("/new/index");
+        bean.setSuccessUrl("/new/idnex");
         //添加shiro内置的过滤器
         /*
             参数：
@@ -51,6 +51,7 @@ public class ShiroConfig {
         map.put("/person/index","authc");
         map.put("/new/index","anon");
         map.put("/person/*","authc");
+        map.put("/*/*","anon");             //全部放行
         bean.setFilterChainDefinitionMap(map);
         return bean;
 
