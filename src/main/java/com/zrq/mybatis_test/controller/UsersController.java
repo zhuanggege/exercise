@@ -39,4 +39,12 @@ public class UsersController {
 
     }
 
+    @PostMapping("/users_update")
+    public String updateUser(@RequestBody UserRequest user) {
+
+        Integer updateUserName = usersService.updateUserName(user);
+        return ""+updateUserName;
+
+    }
+
 }

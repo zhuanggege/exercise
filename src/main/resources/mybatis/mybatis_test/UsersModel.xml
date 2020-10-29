@@ -13,5 +13,14 @@
     <sql id="Base_Column_List">
         id, name, password
     </sql>
+    <update id="UpdateUserToName" >
+
+        update users
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="user.name != null">name=#{user.name}</if>
+            <if test="user.password != null">password = #{user.password}</if>
+        </trim>
+        where id = #{user.id}
+    </update>
 
 </mapper>

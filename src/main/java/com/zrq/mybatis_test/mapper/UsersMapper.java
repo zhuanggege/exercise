@@ -1,8 +1,9 @@
 package com.zrq.mybatis_test.mapper;
 
-import com.zrq.mybatis_test.entity.UsersModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zrq.mybatis_test.entity.UsersModel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +17,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UsersMapper extends BaseMapper<UsersModel> {
+
+    Integer UpdateUserToName(@Param("user")UsersModel users);
 
 }

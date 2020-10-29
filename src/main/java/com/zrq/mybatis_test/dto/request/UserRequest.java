@@ -1,17 +1,20 @@
 package com.zrq.mybatis_test.dto.request;
 
-import lombok.Builder;
+import com.zrq.core.corerequest.PageRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 import lombok.experimental.Tolerate;
 
 /**
- * @Author:
+ * @Author: z
  * @CreateDate: 2020/10/29
  * @Version: 类说明：
  */
 @Data
-@Builder
-public class UserRequest {
+@EqualsAndHashCode(callSuper = false)
+@SuperBuilder
+public class UserRequest extends PageRequest<Object> {
 
     private Integer id;
 
@@ -21,5 +24,6 @@ public class UserRequest {
 
     @Tolerate
     public UserRequest() {
+        super();
     }
 }

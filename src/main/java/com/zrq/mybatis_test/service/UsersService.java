@@ -35,12 +35,19 @@ public class UsersService extends ServiceImpl<UsersMapper, UsersModel>{
     private final ModelMapper modelMapper;
 
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public IPage<UsersResult> selUsers(PageRequest<UserRequest> page) {
 
         Page<UsersModel> modelPage = usersMapper.selectPage(new Page<>(page.getPageNo(), page.getPageSize()), null);
         IPage<UsersResult> resultIPage = modelPage.convert(f -> modelMapper.map(f, UsersResult.class));
         return resultIPage;
+    }
+
+    @Transactional(readOnly = false)
+    public Integer updateUserName(UserRequest userRequest) {
+
+        int updateById = usersMapper.updateById(modelMapper.map(userRequest, UsersModel.class));
+        return updateById;
     }
 
 
